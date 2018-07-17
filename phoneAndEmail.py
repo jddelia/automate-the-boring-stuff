@@ -14,6 +14,9 @@ def phone_numbers(txt):
     phone_numbers = re.compile(r'(\d{3})-(\d{3})-(\d{4})')
     phone_mo = phone_numbers.findall(txt)
 
+    if phone_mo == None:
+        return None
+
     for i in phone_mo:
         phone_num_lst.append('-'.join(i))
 
@@ -29,6 +32,9 @@ def email_addrs(txt):
     email_reg = re.compile(r'\w*@\w*\.\w{3}')
     email_mo = email_reg.findall(txt)
 
+    if email_mo == None:
+        return None
+
     for i in email_mo:
         email_lst.append(i)
 
@@ -42,13 +48,19 @@ def phones_and_emails(phones, emails):
 
     phone_email_txt = "Phone numbers are:\n\n"
 
-    for n in phones:
-        phone_email_txt += n + "\n"
+    if phones == None:
+        phone_email_txt += "No phone numbers.\n"
+    else:
+        for n in phones:
+            phone_email_txt += n + "\n"
 
     phone_email_txt += "\nEmail addresses are:\n\n"
 
-    for e in emails:
-        phone_email_txt += e + "\n"
+    if emails == None:
+        phone_email_txt += "No email addresses.\n"
+    else:
+        for e in emails:
+            phone_email_txt += e + "\n"
 
     pyperclip.copy(phone_email_txt)
 
