@@ -62,6 +62,6 @@ def phones_and_emails(phones, emails):
         for e in emails:
             phone_email_txt += e + "\n"
 
-    pyperclip.copy(phone_email_txt)
+    return phone_email_txt
 
-phones_and_emails(phone_nums, emails)
+pyperclip.copy(phones_and_emails(phone_nums, emails))
